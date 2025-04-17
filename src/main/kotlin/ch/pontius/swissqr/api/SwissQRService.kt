@@ -116,7 +116,7 @@ fun main(args: Array<String>) {
             requestLogger.debug("API ${req.method} request to ${ctx.path()} with params (${ctx.queryParamMap().map { e -> "${e.key}=${e.value}" }.joinToString()}) from ${req.remoteAddr}")
         }
     }.error(401) { ctx ->
-        ctx.json(ErrorStatus(401, "Unauthorized request!"))
+        ctx.json(ErrorStatus(401, "Unauthorized request! ${config.keys}"))
         requestLogger.error("Unauthorized request to {}.", ctx.path())
     }.exception(ErrorStatusException::class.java) { e, ctx ->
         ctx.status(e.status).json(ErrorStatus(e.status, e.description))
