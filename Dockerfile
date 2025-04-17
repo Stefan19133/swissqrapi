@@ -13,4 +13,4 @@ COPY --from=build /swissqr-api/build/distributions/swissqr-bin /swissqr-bin
 
 EXPOSE 8081
 
-ENTRYPOINT /swissqr-bin/bin/SwissQRService /data/config.json
+ENTRYPOINT ["/swissqr-bin/bin/SwissQRService", "/data/config.json"]
