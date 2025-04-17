@@ -124,7 +124,7 @@ fun main(args: Array<String>) {
     }.exception(Exception::class.java) { e, ctx ->
         ctx.status(500).json(ErrorStatus(500, "Internal server error: ${e.message}"))
         requestLogger.error("Exception during handling of request to {}: {}", ctx.path(), e)
-    }.start(config.server.port)
+    }.start(System.getenv("PORT")?.toInt() ?: config.server.port)
 
     /* Wait for user to abort. */
     while (true) {
