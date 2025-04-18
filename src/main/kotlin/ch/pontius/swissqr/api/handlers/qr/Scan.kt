@@ -89,6 +89,7 @@ private fun extractImage(ctx: Context): List<BufferedImage> {
                 val numberOfPages: Int = doc.numberOfPages
                 val result = (0 until numberOfPages).map {
                     renderer.renderImageWithDPI(it, 300.0f, ImageType.RGB)
+                    upscaleImage(img, 2)
                 }
                 doc.close()
                 result
